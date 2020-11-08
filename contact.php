@@ -38,15 +38,21 @@ if (!empty($_POST)) {
 
         if (mail($toEmail, $emailSubject, $body, $headers)) {
             $_SESSION['response'] = '<div class="alert alert-success">Your Message has been successfully delivered. We will be in touch with you shortly.</div>';
-            header('Location: index.html#form');
+            echo "<script>
+                    window.location.href = 'index.html#form';
+                </script>";
         } else {
             $_SESSION['response'] = '<div class="alert alert-danger">Your Message was not delivered. Please try again.</div>';
-            header('Location: index.html#form');
+            echo "<script>
+                    window.location.href = 'index.html#form';
+                </script>";
         }
     } else {
         $allErrors = join('<br/>', $errors);
         $_SESSION['response'] = "<p style='color: red;'>{$allErrors}</p>";
-        header('Location: index.html#form');
+        echo "<script>
+                    window.location.href = 'index.html#form';
+                </script>";
     }
 }
 
